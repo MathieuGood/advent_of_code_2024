@@ -6,7 +6,7 @@ with open("day03_data.txt") as txtfile:
     computer_memory = txtfile.read()
 
 
-valid_sequences: list[str] = re.findall(
+valid_sequences: list[tuple[str, str, str]] = re.findall(
     r"(mul\([0-9]+,[0-9]+\))|(don't\(\))|(do\(\))",
     computer_memory,
 )
