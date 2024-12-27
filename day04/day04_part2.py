@@ -24,10 +24,6 @@ test_word_matrix = [
 
 print(f"Matrix size : {len(word_matrix)} rows x {len(word_matrix[0])} cols")
 
-# Function to check if a 3x3 matrix matches the XMAS pattern
-
-# Loop over all 3x3 matrixes from the source word_matrix
-
 
 def get_3by3_matrixes(
     word_matrix: list[str],
