@@ -1,5 +1,4 @@
 import csv
-import re
 
 
 word_matrix: list[str] = []
@@ -30,10 +29,12 @@ print(f"Matrix size : {len(word_matrix)} rows x {len(word_matrix[0])} cols")
 # Loop over all 3x3 matrixes from the source word_matrix
 
 
-def get_3by3_matrixes(word_matrix: list[str]) -> list[list[str]]:
+def get_3by3_matrixes(
+    word_matrix: list[str],
+) -> list[list[list[str], list[str], list[str]]]:
     sub_matrixes = []
-    for row_index in range(len(word_matrix) - 4):
-        for col_index in range(len(word_matrix[0]) - 4):
+    for row_index in range(len(word_matrix) - 2):
+        for col_index in range(len(word_matrix[0]) - 2):
             sub_matrix = [
                 [
                     word_matrix[row_index][col_index],
@@ -55,9 +56,24 @@ def get_3by3_matrixes(word_matrix: list[str]) -> list[list[str]]:
     return sub_matrixes
 
 
-sub_matrixes = get_3by3_matrixes(test_word_matrix)
+def is_xmas_3by3_matrix(matrix: list[list[str], list[str], list[str]]) -> bool:
+    # Top left to bottom right diagonal
+    diagonal1: str = matrix[0][0] + matrix[1][1] + matrix[2][2]
+    # Top right to bottom left diagonal
+    diagonal2: str = matrix[0][2] + matrix[1][1] + matrix[2][0]
+    return is_mas_string(diagonal1) and is_mas_string(diagonal2)
 
+
+def is_mas_string(mas_string: str) -> bool:
+    return mas_string.upper() == "MAS" or mas_string[::-1].upper() == "MAS"
+
+
+sub_matrixes = get_3by3_matrixes(word_matrix)
+
+xmas_occurences = 0
 for matrix in sub_matrixes:
-    for row in matrix:
-        print(row)
-    print("\n")
+    print(matrix)
+    if is_xmas_3by3_matrix(matrix):
+        xmas_occurences += 1
+
+print(f"{xmas_occurences} occurences of XMAS in the matrix")
