@@ -3,3 +3,4 @@
 
 
 My solutions to the Advent of Code 2024 puzzles in Python.
+https://adventofcode.com/2024/
